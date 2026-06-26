@@ -1,5 +1,7 @@
 # RunbookAI Mini 🚀
 
+![RunbookAI Mini Dashboard](./dashboard_screenshot.png)
+
 RunbookAI Mini is an **Intelligent Error Triage Web App** that acts as a "Log to Script" fixer. It provides developers and system administrators with immediate root-cause diagnostics and ready-to-run resolution scripts from raw Linux system logs, Docker errors, or service crash messages.
 
 Built as a lightweight, single-page dashboard with rich modern aesthetics, it integrates a local FastAPI backend, an interactive Bash script editor, a retro shell console, and an end-to-end local demo simulator.
