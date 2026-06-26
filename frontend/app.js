@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Determine API Base URL for backend requests
+    const API_BASE = window.location.origin.includes("github.io")
+        ? "http://127.0.0.1:8000"
+        : "";
+
     // UI Elements
     const logInput = document.getElementById("log-input");
     const clearBtn = document.getElementById("clear-btn");
@@ -58,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Health Checks (Runs every 4 seconds)
     async function checkHealth() {
         try {
-            const res = await fetch("/api/health");
+            const res = await fetch(`${API_BASE}/api/health`);
             if (res.ok) {
                 const data = await res.json();
                 
@@ -92,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. Simulation Status Check (Runs every 3 seconds)
     async function checkSimulationStatus() {
         try {
-            const res = await fetch("/api/simulate/status");
+            const res = await fetch(`${API_BASE}/api/simulate/status`);
             if (res.ok) {
                 const data = await res.json();
                 if (!data.exists) {
@@ -116,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         simBreakBtn.disabled = true;
         simBreakBtn.textContent = "Breaking...";
         try {
-            const res = await fetch("/api/simulate", { method: "POST" });
+            const res = await fetch(`${API_BASE}/api/simulate`, { method: "POST" });
             if (res.ok) {
                 await checkSimulationStatus();
                 // Auto paste the simulation log
@@ -158,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         try {
-            const res = await fetch("/api/analyze", {
+            const res = await fetch(`${API_BASE}/api/analyze`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ log_text: logText })
@@ -217,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const start = performance.now();
-            const res = await fetch("/api/execute", {
+            const res = await fetch(`${API_BASE}/api/execute`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ script: script })
