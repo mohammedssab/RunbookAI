@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: runbook-mini-web
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434/api/generate
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
