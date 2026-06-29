@@ -34,8 +34,9 @@ runbook-mini/
 ├── README.md              # Document you are reading
 ├── .gitignore             # Git ignore file (excludes virtual environment)
 └── frontend/
-    ├── index.html         # Slate-dark HTML frontend with custom Outfit/Inter fonts
-    └── app.js             # Client-side API fetchers, polling, & terminal log styling
+    ├── index.html         # Slate-dark HTML frontend with offline font support
+    ├── app.js             # Client-side API fetchers, polling, & terminal log styling
+    └── tailwind.min.js    # Locally cached Tailwind compiler (100% offline capability)
 ```
 
 ---
